@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maskara Family's Summer Adventure 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --red: #CC0001;
+    --dark: #0a0a0a;
+    --darker: #050505;
+    --white: #f5f0e8;
+    --grey: #1a1a1a;
+    --accent: #FF6B35;
+
+    /* Section themes */
+    --sec-bg: #050505;
+    --sec-text: #f5f0e8;
+    --sec-accent: #FFD700;
+    --sec-accent2: #FF6B35;
+    --sec-card: #1a1a1a;
+    --sec-border: rgba(255,215,0,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #fff8ee;
+    color: #1a1a1a;
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+    transition: background 0.7s ease, color 0.7s ease;
+  }
+
+  /* ─── SECTION THEMING via data-theme ─── */
+  /* Hero: bright tropical sunrise */
+  [data-theme="hero"] {
+    --sec-bg: #fff8ee;
+    --sec-accent: #FF7E3B;
+    --sec-accent2: #FFC260;
+    --sec-border: rgba(255,126,59,0.3);
+    --sec-card: #fff0d8;
+  }
+
+  /* Championship: black & red ONLY this section stays dark */
+  [data-theme="championship"] {
+    --sec-bg: #1a0002;
+    --sec-accent: #CC0001;
+    --sec-accent2: #FF4444;
+    --sec-border: rgba(204,0,1,0.4);
+    --sec-card: #2a0004;
+  }
+
+  /* KL Arrival: bright minty tropical */
+  [data-theme="kl"] {
+    --sec-bg: #edfff8;
+    --sec-accent: #00b87a;
+    --sec-accent2: #00d9a0;
+    --sec-border: rgba(0,184,122,0.3);
+    --sec-card: #d0fff0;
+  }
+
+  /* Klang / Competition: stays dark red — championship days */
+  [data-theme="klang"] {
+    --sec-bg: #1a0002;
+    --sec-accent: #CC0001;
+    --sec-accent2: #ff5555;
+    --sec-border: rgba(204,0,1,0.35);
+    --sec-card: #2a0004;
+  }
+
+  /* Post-champ options: sunny yellow */
+  [data-theme="options"] {
+    --sec-bg: #fffbea;
+    --sec-accent: #e6960a;
+    --sec-accent2: #FFD166;
+    --sec-border: rgba(230,150,10,0.3);
+    --sec-card: #fff5cc;
+  }
+
+  /* Budget: soft lavender */
+  [data-theme="budget"] {
+    --sec-bg: #f5f0ff;
+    --sec-accent: #7c3aed;
+    --sec-accent2: #a78bfa;
+    --sec-border: rgba(124,58,237,0.25);
+    --sec-card: #ede9ff;
+  }
+
+  /* Visa: sky blue */
+  [data-theme="visa"] {
+    --sec-bg: #eef8ff;
+    --sec-accent: #0284c7;
+    --sec-accent2: #38bdf8;
+    --sec-border: rgba(2,132,199,0.25);
+    --sec-card: #daf0ff;
+  }
+
+  section, .hero, .champ-section, .itinerary-section,
+  .options-section, .budget-section, .visa-section {
+    background: var(--sec-bg, var(--darker));
+    transition: background 0.6s ease;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(12px);
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(255,126,59,0.25);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: #FF7E3B;
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.65;
+    transition: opacity 0.2s;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+  }
+  .nav-links a:hover { opacity: 1; color: #FF7E3B; }
+  @media (max-width: 600px) { .nav-links { display: none; } }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 20px 60px;
+    background: linear-gradient(160deg, #fff4e0 0%, #ffecd6 50%, #e8fff5 100%);
+    color: #1a1a1a;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,126,59,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 80% 100%, rgba(0,200,150,0.1) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  /* Mumbai gateway graphic */
+  .hero::after {
+    content: '✈️';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.04;
+    bottom: 60px;
+    right: 40px;
+    transform: rotate(-20deg);
+  }
+
+  .hero-flags {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 12px;
+    margin-bottom: 20px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 11vw, 8.5rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    animation: fadeDown 0.9s 0.1s ease both;
+    color: #1a1a1a;
+  }
+
+  .hero h1 .line-family { color: #FF7E3B; }
+  .hero h1 .line-dest { color: #d97706; }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #444;
+    opacity: 0.8;
+    margin-top: 16px;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  .hero-badge {
+    margin-top: 36px;
+    background: #CC0001;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 12px 36px;
+    border: 2px solid #FF7E3B;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+
+  .hero-detail {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    color: #333;
+    animation: fadeDown 1s 0.4s ease both;
+  }
+
+  .mumbai-tag {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #555;
+    opacity: 0.8;
+    animation: fadeDown 1s 0.5s ease both;
+  }
+  .mumbai-tag::before, .mumbai-tag::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: #FF7E3B;
+    opacity: 0.5;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.35;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #333;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after { content: '↓'; font-size: 1.1rem; }
+
+  .info-strip {
+    background: #fff3e0;
+    border-top: 2px solid rgba(255,126,59,0.3);
+    border-bottom: 2px solid rgba(255,126,59,0.3);
+    padding: 28px 20px;
+  }
+  .info-strip-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 640px) { .info-strip-inner { grid-template-columns: 1fr; } }
+
+  .leave-card {
+    background: #fff;
+    border: 1px solid rgba(255,126,59,0.25);
+    border-top: 3px solid #FF7E3B;
+    padding: 20px 24px;
+    border-radius: 2px;
+    color: #1a1a1a;
+  }
+  .leave-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #FF7E3B;
+    margin-bottom: 10px;
+  }
+  .leave-card p { font-size: 0.9rem; color: #333; line-height: 1.6; }
+  .leave-card .leave-days {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #FF7E3B;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .rajit-note {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(255,200,0,0.12);
+    border-left: 3px solid #f59e0b;
+    font-size: 0.82rem;
+    color: #555;
+    font-style: italic;
+  }
+
+  /* ── CHAMPIONSHIP ── */
+  .champ-section {
+    background: linear-gradient(160deg, #1a0002 0%, #2a0004 100%);
+    padding: 70px 20px;
+    position: relative;
+    overflow: hidden;
+    color: #f5f0e8;
+  }
+  .champ-section::before {
+    content: '🥋';
+    position: absolute;
+    font-size: 240px;
+    opacity: 0.06;
+    right: -30px;
+    top: -20px;
+    line-height: 1;
+  }
+  .champ-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+  .champ-section .section-label { color: #f5f0e8; }
+  .champ-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+    margin-bottom: 24px;
+    color: #f5f0e8;
+  }
+  .champ-card .label {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    color: #f5f0e8;
+    margin-bottom: 6px;
+  }
+  .fee-box p { color: #f5f0e8; }
+  .fee-box ul li { color: #f5f0e8; }
+  .champ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .champ-card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(204,0,1,0.35);
+    padding: 18px;
+  }
+  .champ-card .label {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 6px;
+  }
+  .champ-card .value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #CC0001;
+  }
+  .fee-box {
+    margin-top: 28px;
+    background: rgba(0,0,0,0.4);
+    border-left: 4px solid #CC0001;
+    padding: 22px;
+  }
+  .fee-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: #FF4444;
+    margin-bottom: 12px;
+  }
+  .fee-box ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .fee-box ul li::before { content: '✅ '; }
+  .fee-box ul li { font-size: 0.93rem; opacity: 0.88; }
+  .deadline {
+    margin-top: 20px;
+    background: #CC0001;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── ITINERARY ── */
+  .itinerary-section {
+    padding: 80px 20px;
+  }
+  .section-header {
+    max-width: 900px;
+    margin: 0 auto 56px;
+  }
+  .section-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    color: #1a1a1a;
+  }
+  .section-header h2 span { color: #d97706; }
+
+  /* Day theming */
+  .day-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .day-row.visible { opacity: 1; transform: translateX(0); }
+
+  /* Day-specific left border colours */
+  .day-row[data-day="kl1"] .day-content { border-left: 2px solid rgba(0,217,160,0.3); }
+  .day-row[data-day="kl2"] .day-content { border-left: 2px solid rgba(0,217,160,0.3); }
+  .day-row[data-day="transit"] .day-content { border-left: 2px solid rgba(224,0,79,0.3); }
+  .day-row[data-day="comp1"] .day-content { border-left: 2px solid rgba(204,0,1,0.5); }
+  .day-row[data-day="comp2"] .day-content { border-left: 2px solid rgba(204,0,1,0.5); }
+  .day-row[data-day="adv"] .day-content { border-left: 2px solid rgba(245,166,35,0.3); }
+  .day-row[data-day="depart"] .day-content { border-left: 2px solid rgba(255,255,255,0.2); }
+
+  .day-num {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    position: relative;
+  }
+  .day-num .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: #d97706;
+    line-height: 1;
+  }
+  .day-num .date-label {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    color: #333;
+    text-align: center;
+    margin-top: 4px;
+  }
+  .day-num::after {
+    content: '';
+    position: absolute;
+    top: 70px; bottom: -20px; left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, #d97706, transparent);
+    opacity: 0.25;
+  }
+  .day-row:last-child .day-num::after { display: none; }
+
+  .day-content { padding: 8px 0 38px 28px; }
+
+  .day-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+  .tag-arrival { background: rgba(255,107,53,0.2); color: #FF6B35; border: 1px solid #FF6B35; }
+  .tag-explore { background: rgba(0,217,160,0.15); color: #00d9a0; border: 1px solid #00d9a0; }
+  .tag-competition { background: rgba(204,0,1,0.3); color: #ff5555; border: 1px solid #CC0001; }
+  .tag-adventure { background: rgba(245,166,35,0.15); color: #F5A623; border: 1px solid #F5A623; }
+  .tag-depart { background: rgba(0,0,0,0.07); color: #555; border: 1px solid rgba(0,0,0,0.2); }
+
+  .day-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+  .day-activities { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .day-activities li {
+    font-size: 0.9rem;
+    color: #333;
+    opacity: 0.85;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .day-activities li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: #d97706;
+    opacity: 0.7;
+  }
+  .day-hotel {
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: #FF6B35;
+    letter-spacing: 1px;
+  }
+  .day-hotel::before { content: '🏨 '; }
+
+  /* ── DESTINATION IMAGE CARDS ── */
+  .dest-image-row {
+    max-width: 900px;
+    margin: 0 auto 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+  }
+  .dest-image-row.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 640px) { .dest-image-row { grid-template-columns: 1fr 1fr; } }
+  .dest-img-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: #111;
+  }
+  .dest-img-card img,
+  .dest-img-card svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .dest-img-card:hover img,
+  .dest-img-card:hover svg { transform: scale(1.06); }
+  .dest-img-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    padding: 12px 10px 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .kids-section {
+    padding: 70px 20px;
+    background: linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 100%);
+    border-top: 2px solid rgba(0,184,122,0.2);
+  }
+  .kids-inner { max-width: 900px; margin: 0 auto; }
+  .kids-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 8px;
+    color: #059669;
+  }
+  .kids-sub {
+    font-size: 0.82rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 36px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .kids-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 640px) { .kids-grid { grid-template-columns: 1fr; } }
+  .kid-card {
+    padding: 28px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kid-card-boy {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid rgba(0,120,200,0.2);
+    border-top: 4px solid #3b82f6;
+    color: #1a1a1a;
+  }
+  .kid-card-girl {
+    background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-top: 4px solid #a855f7;
+    color: #1a1a1a;
+  }
+  .kid-avatar { font-size: 2.8rem; margin-bottom: 10px; }
+  .kid-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kid-card-boy .kid-name { color: #2563eb; }
+  .kid-card-girl .kid-name { color: #9333ea; }
+  .kid-age {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #666;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-bottom: 18px;
+  }
+  .kid-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .kid-list li {
+    font-size: 0.9rem;
+    color: #333;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.45;
+  }
+  .kid-card-boy .kid-list li::before { content: '🔵'; position: absolute; left: 0; font-size: 0.55rem; top: 4px; }
+  .kid-card-girl .kid-list li::before { content: '🌸'; position: absolute; left: 0; font-size: 0.55rem; top: 4px; }
+  .kids-shared {
+    margin-top: 24px;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid rgba(5,150,105,0.2);
+    border-left: 4px solid #059669;
+  }
+  .kids-shared h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #059669;
+    margin-bottom: 12px;
+  }
+  .kids-shared ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .kids-shared ul li {
+    background: rgba(5,150,105,0.08);
+    border: 1px solid rgba(5,150,105,0.2);
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    color: #333;
+    border-radius: 2px;
+  }
+
+  /* ── OPTIONS ── */
+  .options-section {
+    padding: 80px 20px;
+    background: linear-gradient(160deg, #100a00 0%, #1c1200 100%);
+    color: #f5f0e8;
+  }
+  .options-section h2 { color: #f5f0e8 !important; }
+  .options-section .section-label { color: #f5f0e8 !important; }
+  .options-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  @media (max-width: 650px) { .options-grid { grid-template-columns: 1fr; } }
+  .option-card {
+    padding: 38px 30px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .option-card:hover { transform: scale(1.01); }
+  .option-a {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 100%);
+    border-top: 4px solid #00b4d8;
+  }
+  .option-b {
+    background: linear-gradient(135deg, #1a2a0d 0%, #2d4a1a 100%);
+    border-top: 4px solid #80b918;
+  }
+  .option-emoji { font-size: 2.8rem; margin-bottom: 14px; display: block; }
+  .option-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .option-a h3 { color: #00b4d8; }
+  .option-b h3 { color: #80b918; }
+  .option-card .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 18px;
+  }
+  .option-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; }
+  .option-card ul li { font-size: 0.9rem; color: rgba(255,255,255,0.82); padding-left: 20px; position: relative; }
+  .option-card ul li::before { content: '✦'; position: absolute; left: 0; font-size: 0.55rem; top: 3px; color: rgba(255,255,255,0.4); }
+  .visa-note { font-size: 0.78rem; padding: 9px 13px; margin-top: 8px; }
+  .visa-free { background: rgba(0,200,100,0.12); border: 1px solid rgba(0,200,100,0.35); color: #00c864; }
+  .visa-required { background: rgba(255,150,0,0.12); border: 1px solid rgba(255,150,0,0.35); color: #ffa500; }
+
+  /* ── BUDGET ── */
+  .budget-section { padding: 80px 20px; }
+  .budget-table { max-width: 900px; margin: 0 auto; width: 100%; border-collapse: collapse; }
+  .budget-table thead tr { border-bottom: 2px solid #7c3aed; }
+  .budget-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    color: #7c3aed;
+  }
+  .budget-table td {
+    padding: 13px 16px;
+    font-size: 0.93rem;
+    color: #1a1a1a;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    vertical-align: top;
+  }
+  .budget-table tbody tr:hover td { background: rgba(124,58,237,0.04); }
+  .budget-table td:last-child {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.03rem;
+    color: #7c3aed;
+    white-space: nowrap;
+  }
+  .budget-total { max-width: 900px; margin: 0 auto; display: flex; justify-content: flex-end; margin-top: 22px; }
+  .total-box { background: #CC0001; padding: 18px 30px; text-align: right; }
+  .total-box .total-label { font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.65; margin-bottom: 4px; }
+  .total-box .total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1; }
+  .total-note { font-size: 0.72rem; opacity: 0.55; margin-top: 4px; }
+
+  /* ── VISA ── */
+  .visa-section { padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+  .visa-cards { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 600px) { .visa-cards { grid-template-columns: 1fr; } }
+  .visa-card { padding: 26px; }
+  .visa-card-my { background: rgba(5,150,105,0.06); border: 1px solid rgba(5,150,105,0.25); }
+  .visa-card-sg { background: rgba(2,132,199,0.06); border: 1px solid rgba(2,132,199,0.25); }
+  .visa-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+  .visa-card-my h3 { color: #059669; }
+  .visa-card-sg h3 { color: #0284c7; }
+  .visa-card .status-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 14px;
+  }
+  .badge-free { background: rgba(5,150,105,0.12); color: #059669; }
+  .badge-required { background: rgba(2,132,199,0.12); color: #0284c7; }
+  .visa-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .visa-card ul li { font-size: 0.86rem; color: #333; padding-left: 16px; position: relative; }
+  .visa-card ul li::before { content: '·'; position: absolute; left: 4px; color: #d97706; }
+
+  .mumbai-flight-note {
+    max-width: 900px;
+    margin: 0 auto 28px;
+    padding: 14px 20px;
+    background: rgba(255,126,59,0.08);
+    border: 1px solid rgba(255,126,59,0.25);
+    border-left: 4px solid #FF7E3B;
+    font-size: 0.88rem;
+    color: #333;
+  }
+  .mumbai-flight-note strong { color: #c05b10; }
+
+  footer {
+    background: #1a1a1a;
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 3px solid #FF7E3B;
+  }
+  footer .footer-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #FFD700; letter-spacing: 4px; }
+  footer p { font-size: 0.78rem; opacity: 0.4; margin-top: 8px; letter-spacing: 2px; color: #fff; }
+
+  .divider { height: 2px; background: linear-gradient(to right, transparent, #FF7E3B, transparent); opacity: 0.25; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* Itinerary section specific bg per group */
+  .iti-group-kl { background: linear-gradient(160deg, #edfff8 0%, #d8fff2 100%); padding: 48px 20px 0; }
+  .iti-group-klang { background: linear-gradient(160deg, #1a0002 0%, #2a0004 100%); padding: 48px 20px 0; color: #f5f0e8; }
+  .iti-group-depart { background: linear-gradient(160deg, #fffbea 0%, #fff5cc 100%); padding: 48px 20px 32px; }
+
+  .iti-group-label {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .iti-group-klang .iti-group-label {
+    color: #ffbbbb;
+    border-bottom-color: rgba(204,0,1,0.2);
+    opacity: 0.8;
+  }
+  .iti-group-klang .day-title { color: #fff5f5; }
+  .iti-group-klang .day-activities li { color: #ffdddd; opacity: 0.9; }
+  .iti-group-klang .day-num .num { color: #ff5555; }
+  .iti-group-klang .day-num .date-label { color: #ffaaaa; opacity: 1; }
+  .iti-group-klang .day-num::after { background: linear-gradient(to bottom, #CC0001, transparent); }
+  .iti-group-klang .day-activities li::before { color: #ff5555; opacity: 1; }
+  .iti-group-klang .day-hotel { color: #ff8888; }
+
+  /* ── SCROLL COLOR TINT on body bg ── */
+  .color-swatch {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🌴 Maskara 2026</div>
+  <ul class="nav-links">
+    <li><a href="#championship">Championship</a></li>
+    <li><a href="#itinerary">Itinerary</a></li>
+    <li><a href="#kids">Kids Corner</a></li>
+    <li><a href="#options">Options</a></li>
+    <li><a href="#budget">Budget</a></li>
+    <li><a href="#visa">Visa Info</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero" data-theme="hero">
+  <div class="hero-flags">🇮🇳 ✈️ 🇲🇾</div>
+  <h1>
+    <span class="line-family">MASKARA</span><br>
+    <span class="line-dest">FAMILY'S</span><br>
+    SUMMER<br>
+    <span class="line-dest">ADVENTURE</span>
+  </h1>
+  <div class="hero-sub">Champions · Explorers · Togetherness · 2026</div>
+  <div class="hero-badge">May 2 – 3 · Klang, Malaysia · International Taekwondo</div>
+  <div class="hero-detail">7 Days · Family of 4 · One Epic Journey</div>
+  <div class="mumbai-tag">✈️ &nbsp;Departing from Mumbai · Chhatrapati Shivaji Maharaj International Airport</div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- LEAVE STRIP -->
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="leave-card">
+      <h4>📅 Rahul's Leave Plan</h4>
+      <div class="leave-days">4 Days</div>
+      <p>Leaves from work: <strong>Apr 29 – May 5, 2026</strong><br>
+      Using weekend + public holiday buffer to maximise time.</p>
+      <div class="rajit-note">
+        😄 Silver lining: Rahul gets to <strong>skip the Monday sales review</strong> (May 4). He is absolutely delighted about this. Best part of the trip? Possibly. 🥇
+      </div>
+    </div>
+    <div class="leave-card">
+      <h4>📅 Niyati's Leave Plan</h4>
+      <div class="leave-days">4 Days</div>
+      <p>Leaves from work: <strong>Apr 29 – May 5, 2026</strong><br>
+      Weekend on either side means maximum family time for minimum leave days. Perfectly planned! 🌺</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAMPIONSHIP -->
+<section class="champ-section" id="championship" data-theme="championship">
+  <div class="champ-inner">
+    <div class="section-label">🏆 The Main Event</div>
+    <div class="champ-title">Malaysia International<br>Taekwondo Championship</div>
+
+    <div class="champ-grid">
+      <div class="champ-card">
+        <div class="label">Dates</div>
+        <div class="value">May 2 – 3, 2026</div>
+      </div>
+      <div class="champ-card">
+        <div class="label">Venue</div>
+        <div class="value">KSL Esplanade Mall, Klang</div>
+      </div>
+      <div class="champ-card">
+        <div class="label">Events</div>
+        <div class="value">Kyorugi · Poomsae · Speed Kick · Speed Punch</div>
+      </div>
+      <div class="champ-card">
+        <div class="label">Academy</div>
+        <div class="value">Fighting Fit Martial Arts Academy</div>
+      </div>
+    </div>
+
+    <div class="fee-box">
+      <h3>₹1,15,000 Package Covers (1 Student + 1 Parent)</h3>
+      <ul>
+        <li>Professional & Coach charges</li>
+        <li>Registration + Competition fees (all 4 events)</li>
+        <li>India Team Tracksuit</li>
+        <li>Special dedicated training by the academy</li>
+      </ul>
+      <br>
+      <p style="font-size:0.83rem; opacity:0.65;">👉 Additional family members (Niyati + kids) have separate costs. Independent travel — own flights, visa & hotel — is recommended for the family.</p>
+    </div>
+
+    <div class="deadline">⏳ Register by: 9th March 2026 · Contact Narendra Pandey, Chief Instructor</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ITINERARY -->
+<section class="itinerary-section" id="itinerary">
+
+  <!-- KL DAYS -->
+  <div class="iti-group-kl" data-theme="kl">
+    <div class="iti-group-label">🌿 Kuala Lumpur — Tropical City Days</div>
+
+    <!-- KL Images -->
+    <div class="dest-image-row" id="img-kl">
+      <div class="dest-img-card">
+        <!-- Petronas Twin Towers SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="skyKL" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0f2944"/>
+              <stop offset="100%" stop-color="#1a4a7a"/>
+            </linearGradient>
+            <linearGradient id="towerG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c8d8e8"/>
+              <stop offset="100%" stop-color="#7a9ab8"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#skyKL)"/>
+          <!-- Stars -->
+          <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.8"/>
+          <circle cx="120" cy="20" r="1" fill="white" opacity="0.6"/>
+          <circle cx="200" cy="15" r="1.5" fill="white" opacity="0.7"/>
+          <circle cx="310" cy="25" r="1" fill="white" opacity="0.5"/>
+          <circle cx="370" cy="40" r="1.5" fill="white" opacity="0.8"/>
+          <!-- Moon -->
+          <circle cx="340" cy="50" r="18" fill="#f0e68c" opacity="0.9"/>
+          <!-- Ground -->
+          <rect x="0" y="230" width="400" height="70" fill="#0a1f35"/>
+          <!-- Water reflection -->
+          <rect x="0" y="245" width="400" height="55" fill="#0d2847" opacity="0.8"/>
+          <!-- Tower LEFT -->
+          <rect x="138" y="80" width="34" height="160" fill="url(#towerG)"/>
+          <!-- Tower left details - floors -->
+          <rect x="140" y="90" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="100" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="110" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="120" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="130" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="140" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="150" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="160" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="170" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="180" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="190" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="140" y="200" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <!-- Left spire -->
+          <polygon points="155,30 148,80 162,80" fill="#d0d8e0"/>
+          <!-- Left top ring -->
+          <rect x="142" y="72" width="26" height="10" fill="#b8c8d8" rx="1"/>
+          <!-- Tower RIGHT -->
+          <rect x="228" y="80" width="34" height="160" fill="url(#towerG)"/>
+          <!-- Tower right details -->
+          <rect x="230" y="90" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="100" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="110" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="120" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="130" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="140" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="150" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="160" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="170" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="180" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="190" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <rect x="230" y="200" width="30" height="2" fill="rgba(255,255,255,0.15)"/>
+          <!-- Right spire -->
+          <polygon points="245,30 238,80 252,80" fill="#d0d8e0"/>
+          <rect x="232" y="72" width="26" height="10" fill="#b8c8d8" rx="1"/>
+          <!-- Skybridge -->
+          <rect x="172" y="162" width="56" height="8" fill="#a0b8cc"/>
+          <!-- Windows glow -->
+          <rect x="144" y="105" width="6" height="4" fill="#ffe080" opacity="0.7"/>
+          <rect x="152" y="105" width="6" height="4" fill="#ffe080" opacity="0.7"/>
+          <rect x="234" y="115" width="6" height="4" fill="#ffe080" opacity="0.7"/>
+          <rect x="244" y="125" width="6" height="4" fill="#ffe080" opacity="0.5"/>
+          <!-- Reflections in water -->
+          <rect x="150" y="248" width="10" height="40" fill="#7a9ab8" opacity="0.3"/>
+          <rect x="240" y="248" width="10" height="40" fill="#7a9ab8" opacity="0.3"/>
+          <line x1="155" y1="250" x2="155" y2="290" stroke="#a0c0e0" stroke-width="1" opacity="0.2"/>
+          <line x1="245" y1="250" x2="245" y2="290" stroke="#a0c0e0" stroke-width="1" opacity="0.2"/>
+        </svg>
+        <div class="dest-img-label">Petronas Twin Towers</div>
+      </div>
+      <div class="dest-img-card">
+        <!-- Batu Caves SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="skyBatu" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#87ceeb"/>
+              <stop offset="60%" stop-color="#b8e0f7"/>
+              <stop offset="100%" stop-color="#dff0ff"/>
+            </linearGradient>
+            <linearGradient id="hillG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a7c4e"/>
+              <stop offset="100%" stop-color="#2d5a30"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#skyBatu)"/>
+          <!-- Clouds -->
+          <ellipse cx="80" cy="50" rx="40" ry="18" fill="white" opacity="0.8"/>
+          <ellipse cx="110" cy="45" rx="30" ry="15" fill="white" opacity="0.8"/>
+          <ellipse cx="300" cy="60" rx="50" ry="20" fill="white" opacity="0.7"/>
+          <!-- Limestone cliff -->
+          <polygon points="80,300 80,120 120,80 160,95 200,60 240,90 280,70 320,100 340,120 340,300" fill="#a09070"/>
+          <polygon points="80,300 80,130 115,95 155,110 200,75 240,105 280,85 320,110 340,130 340,300" fill="#b8a888"/>
+          <!-- Cave entrance - dark arch -->
+          <ellipse cx="200" cy="220" rx="55" ry="65" fill="#2a1a0a"/>
+          <ellipse cx="200" cy="225" rx="45" ry="55" fill="#1a0d05"/>
+          <!-- Steps -->
+          <rect x="170" y="260" width="60" height="6" fill="#d4c4a0" rx="1"/>
+          <rect x="174" y="254" width="52" height="6" fill="#cbb890" rx="1"/>
+          <rect x="178" y="248" width="44" height="6" fill="#c2ae80" rx="1"/>
+          <rect x="182" y="242" width="36" height="6" fill="#b9a470" rx="1"/>
+          <rect x="186" y="236" width="28" height="6" fill="#b09a60" rx="1"/>
+          <!-- Gold statue -->
+          <rect x="194" y="180" width="12" height="50" fill="#ffd700"/>
+          <ellipse cx="200" cy="178" rx="10" ry="12" fill="#ffd700"/>
+          <rect x="197" y="166" width="6" height="14" fill="#ffaa00"/>
+          <polygon points="200,155 196,168 204,168" fill="#ffd700"/>
+          <!-- Monkeys hint -->
+          <circle cx="130" cy="200" r="8" fill="#8b6914"/>
+          <circle cx="130" cy="193" r="6" fill="#a07820"/>
+          <circle cx="270" cy="210" r="8" fill="#8b6914"/>
+          <circle cx="270" cy="203" r="6" fill="#a07820"/>
+          <!-- Trees -->
+          <rect x="50" y="240" width="8" height="60" fill="#5a3a1a"/>
+          <ellipse cx="54" cy="228" rx="22" ry="28" fill="url(#hillG)"/>
+          <rect x="340" y="235" width="8" height="65" fill="#5a3a1a"/>
+          <ellipse cx="344" cy="220" rx="22" ry="28" fill="url(#hillG)"/>
+        </svg>
+        <div class="dest-img-label">Batu Caves</div>
+      </div>
+      <div class="dest-img-card">
+        <!-- KL City / Street Food Night SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="nightKL" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0a0f1e"/>
+              <stop offset="100%" stop-color="#1a2040"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#nightKL)"/>
+          <!-- Buildings silhouette -->
+          <rect x="0" y="140" width="50" height="160" fill="#1a2035"/>
+          <rect x="10" y="110" width="30" height="190" fill="#202840"/>
+          <rect x="50" y="160" width="40" height="140" fill="#151e30"/>
+          <rect x="95" y="100" width="45" height="200" fill="#1c2438"/>
+          <rect x="145" y="130" width="35" height="170" fill="#18203a"/>
+          <rect x="185" y="90" width="50" height="210" fill="#202840"/>
+          <rect x="240" y="120" width="40" height="180" fill="#151e30"/>
+          <rect x="285" y="105" width="45" height="195" fill="#1a2035"/>
+          <rect x="335" y="145" width="35" height="155" fill="#1c2438"/>
+          <rect x="370" y="125" width="30" height="175" fill="#202840"/>
+          <!-- Building windows - warm glows -->
+          <rect x="15" y="120" width="5" height="4" fill="#ffe066" opacity="0.9"/>
+          <rect x="24" y="120" width="5" height="4" fill="#ffe066" opacity="0.7"/>
+          <rect x="15" y="132" width="5" height="4" fill="#ffcc44" opacity="0.8"/>
+          <rect x="100" y="112" width="5" height="4" fill="#ffe066" opacity="0.9"/>
+          <rect x="110" y="112" width="5" height="4" fill="#ffd44a" opacity="0.7"/>
+          <rect x="100" y="125" width="5" height="4" fill="#ffcc44" opacity="0.6"/>
+          <rect x="110" y="125" width="5" height="4" fill="#ffe066" opacity="0.8"/>
+          <rect x="190" y="102" width="6" height="4" fill="#ffe066" opacity="0.9"/>
+          <rect x="200" y="102" width="6" height="4" fill="#ffd44a" opacity="0.7"/>
+          <rect x="210" y="102" width="6" height="4" fill="#ffe066" opacity="0.8"/>
+          <rect x="190" y="116" width="6" height="4" fill="#ffcc44" opacity="0.7"/>
+          <rect x="200" y="116" width="6" height="4" fill="#ffe066" opacity="0.9"/>
+          <rect x="290" y="118" width="5" height="4" fill="#ffe066" opacity="0.8"/>
+          <rect x="300" y="118" width="5" height="4" fill="#ffd44a" opacity="0.6"/>
+          <rect x="290" y="132" width="5" height="4" fill="#ffe066" opacity="0.9"/>
+          <!-- Street / ground -->
+          <rect x="0" y="245" width="400" height="55" fill="#0d1020"/>
+          <!-- Street lights glow -->
+          <circle cx="80" cy="240" r="20" fill="#ffaa00" opacity="0.12"/>
+          <circle cx="200" cy="240" r="20" fill="#ffaa00" opacity="0.12"/>
+          <circle cx="320" cy="240" r="20" fill="#ffaa00" opacity="0.12"/>
+          <!-- Street stall awnings -->
+          <polygon points="40,220 130,220 130,232 40,232" fill="#e63946"/>
+          <polygon points="160,215 260,215 260,228 160,228" fill="#f4a261"/>
+          <polygon points="285,218 360,218 360,230 285,230" fill="#2a9d8f"/>
+          <!-- Stall lights string -->
+          <line x1="30" y1="215" x2="370" y2="215" stroke="#ffdd55" stroke-width="1" opacity="0.6"/>
+          <circle cx="60" cy="215" r="3" fill="#ffdd55" opacity="0.9"/>
+          <circle cx="100" cy="213" r="3" fill="#ffcc33" opacity="0.9"/>
+          <circle cx="140" cy="215" r="3" fill="#ffee66" opacity="0.9"/>
+          <circle cx="180" cy="213" r="3" fill="#ffdd55" opacity="0.9"/>
+          <circle cx="220" cy="215" r="3" fill="#ffcc33" opacity="0.9"/>
+          <circle cx="260" cy="213" r="3" fill="#ffee66" opacity="0.9"/>
+          <circle cx="300" cy="215" r="3" fill="#ffdd55" opacity="0.9"/>
+          <circle cx="340" cy="213" r="3" fill="#ffcc33" opacity="0.9"/>
+          <!-- People silhouettes -->
+          <ellipse cx="85" cy="242" rx="6" ry="8" fill="#0a0d18"/>
+          <ellipse cx="155" cy="242" rx="6" ry="8" fill="#0a0d18"/>
+          <ellipse cx="220" cy="242" rx="6" ry="8" fill="#0a0d18"/>
+          <ellipse cx="295" cy="242" rx="6" ry="8" fill="#0a0d18"/>
+        </svg>
+        <div class="dest-img-label">KL Night Market</div>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="kl1">
+      <div class="day-num">
+        <div class="num">01</div>
+        <div class="date-label">Apr 29<br>Wed</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-arrival">Arrival</span>
+        <div class="day-title">Mumbai → Kuala Lumpur 🛬</div>
+        <ul class="day-activities">
+          <li>Fly from Mumbai CSMIA to KLIA — direct or 1-stop (AirAsia, IndiGo, Air India)</li>
+          <li>Visa on Arrival for Indians at KLIA — quick & easy</li>
+          <li>Check into hotel in Bukit Bintang area (central KL)</li>
+          <li>Evening: Petronas Twin Towers light show & KLCC Park</li>
+          <li>Dinner at Pavilion Mall food court — halal options galore</li>
+        </ul>
+        <div class="day-hotel">Melia KL / Sunway Putra / ibis Styles KL (~₹5,500–8,000/night)</div>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="kl2">
+      <div class="day-num">
+        <div class="num">02</div>
+        <div class="date-label">Apr 30<br>Thu</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-explore">Explore KL</span>
+        <div class="day-title">Kuala Lumpur Family Day 🦁</div>
+        <ul class="day-activities">
+          <li>Morning: Batu Caves — 272 steps, giant golden statue, the kids will love it</li>
+          <li>Afternoon: Aquaria KLCC (underwater tunnel, sharks!) or KL Bird Park</li>
+          <li>Sundown: Bukit Bintang night market & street food walk</li>
+          <li>Optional: KL Tower for city views</li>
+        </ul>
+        <div class="day-hotel">Same KL hotel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KLANG DAYS -->
+  <div class="iti-group-klang" data-theme="klang">
+    <div class="iti-group-label">🥋 Klang — Championship Arena</div>
+
+    <!-- Klang Images -->
+    <div class="dest-image-row" id="img-klang">
+      <div class="dest-img-card">
+        <!-- Taekwondo Competition SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="arenaG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1a0002"/>
+              <stop offset="100%" stop-color="#2d0005"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#arenaG)"/>
+          <!-- Competition mat -->
+          <ellipse cx="200" cy="220" rx="170" ry="60" fill="#8b0000" opacity="0.6"/>
+          <ellipse cx="200" cy="218" rx="150" ry="50" fill="#a00000" opacity="0.8"/>
+          <!-- Center circle -->
+          <circle cx="200" cy="215" r="40" fill="none" stroke="#cc0001" stroke-width="3" opacity="0.7"/>
+          <circle cx="200" cy="215" r="5" fill="#cc0001" opacity="0.9"/>
+          <!-- Taekwondo fighter 1 - kicking pose (left) -->
+          <g transform="translate(120, 120)">
+            <!-- Body -->
+            <rect x="-8" y="0" width="16" height="30" fill="white" rx="2"/>
+            <!-- Head -->
+            <circle cx="0" cy="-12" r="12" fill="#f4a261"/>
+            <!-- Helmet -->
+            <ellipse cx="0" cy="-14" rx="13" ry="8" fill="#cc0001"/>
+            <!-- Leg kick up -->
+            <line x1="0" y1="30" x2="-20" y2="10" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <line x1="0" y1="30" x2="25" y2="50" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <!-- Arms -->
+            <line x1="-8" y1="8" x2="-28" y2="20" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <line x1="8" y1="8" x2="30" y2="0" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <!-- Black belt -->
+            <rect x="-8" y="14" width="16" height="3" fill="#111"/>
+          </g>
+          <!-- Taekwondo fighter 2 - defending (right) -->
+          <g transform="translate(280, 130)">
+            <rect x="-8" y="0" width="16" height="30" fill="white" rx="2"/>
+            <circle cx="0" cy="-12" r="12" fill="#f4a261"/>
+            <ellipse cx="0" cy="-14" rx="13" ry="8" fill="#003580"/>
+            <line x1="0" y1="30" x2="15" y2="55" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <line x1="0" y1="30" x2="-20" y2="55" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <line x1="-8" y1="8" x2="-30" y2="-5" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <line x1="8" y1="8" x2="25" y2="15" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <rect x="-8" y="14" width="16" height="3" fill="#111"/>
+          </g>
+          <!-- Spotlight beams -->
+          <polygon points="100,0 60,180 140,180" fill="white" opacity="0.04"/>
+          <polygon points="200,0 160,180 240,180" fill="white" opacity="0.03"/>
+          <polygon points="300,0 260,180 340,180" fill="white" opacity="0.04"/>
+          <!-- Crowd dots -->
+          <g opacity="0.4">
+            <circle cx="30" cy="60" r="4" fill="#888"/>
+            <circle cx="50" cy="50" r="4" fill="#888"/>
+            <circle cx="70" cy="65" r="4" fill="#888"/>
+            <circle cx="90" cy="55" r="4" fill="#888"/>
+            <circle cx="310" cy="60" r="4" fill="#888"/>
+            <circle cx="330" cy="50" r="4" fill="#888"/>
+            <circle cx="350" cy="65" r="4" fill="#888"/>
+            <circle cx="370" cy="55" r="4" fill="#888"/>
+          </g>
+          <!-- Gold medal hint top -->
+          <circle cx="200" cy="25" r="18" fill="#ffd700" opacity="0.9"/>
+          <circle cx="200" cy="25" r="13" fill="#ffaa00" opacity="0.9"/>
+          <text x="200" y="30" text-anchor="middle" font-size="14" fill="#7a4400" font-weight="bold">🥇</text>
+        </svg>
+        <div class="dest-img-label">Championship Day · Klang</div>
+      </div>
+      <div class="dest-img-card">
+        <!-- Port Klang Seafront SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#87ceeb"/>
+              <stop offset="45%" stop-color="#b0d8f0"/>
+              <stop offset="46%" stop-color="#1a8abd"/>
+              <stop offset="100%" stop-color="#0d5a8a"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#seaG)"/>
+          <!-- Sun -->
+          <circle cx="320" cy="60" r="35" fill="#ffd700" opacity="0.9"/>
+          <circle cx="320" cy="60" r="28" fill="#ffec60"/>
+          <!-- Sun rays -->
+          <line x1="320" y1="15" x2="320" y2="5" stroke="#ffd700" stroke-width="3" opacity="0.7"/>
+          <line x1="355" y1="25" x2="365" y2="15" stroke="#ffd700" stroke-width="3" opacity="0.7"/>
+          <line x1="365" y1="60" x2="378" y2="60" stroke="#ffd700" stroke-width="3" opacity="0.7"/>
+          <!-- Clouds -->
+          <ellipse cx="80" cy="55" rx="45" ry="18" fill="white" opacity="0.85"/>
+          <ellipse cx="110" cy="48" rx="35" ry="15" fill="white" opacity="0.85"/>
+          <!-- Pier/dock -->
+          <rect x="60" y="155" width="280" height="15" fill="#8b6914"/>
+          <rect x="60" y="155" width="280" height="5" fill="#a07820"/>
+          <!-- Dock pillars -->
+          <rect x="80" y="170" width="8" height="40" fill="#6b4a10"/>
+          <rect x="130" y="170" width="8" height="40" fill="#6b4a10"/>
+          <rect x="180" y="170" width="8" height="40" fill="#6b4a10"/>
+          <rect x="230" y="170" width="8" height="40" fill="#6b4a10"/>
+          <rect x="280" y="170" width="8" height="40" fill="#6b4a10"/>
+          <rect x="320" y="170" width="8" height="40" fill="#6b4a10"/>
+          <!-- Boat 1 -->
+          <polygon points="100,135 160,135 155,155 105,155" fill="#e63946"/>
+          <rect x="118" y="110" width="8" height="28" fill="#555"/>
+          <polygon points="126,105 145,125 126,125" fill="white" opacity="0.9"/>
+          <!-- Boat 2 -->
+          <polygon points="230,130 300,130 295,152 235,152" fill="#2a9d8f"/>
+          <rect x="250" y="105" width="8" height="28" fill="#555"/>
+          <polygon points="258,100 278,122 258,122" fill="white" opacity="0.9"/>
+          <!-- Water ripples -->
+          <ellipse cx="150" cy="185" rx="30" ry="5" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+          <ellipse cx="270" cy="195" rx="25" ry="4" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+          <ellipse cx="80" cy="210" rx="20" ry="3" fill="none" stroke="white" stroke-width="1" opacity="0.25"/>
+          <!-- Waterfront buildings -->
+          <rect x="0" y="100" width="50" height="60" fill="#d4a96a"/>
+          <rect x="5" y="90" width="40" height="15" fill="#c49050"/>
+          <rect x="355" y="95" width="45" height="65" fill="#c8956a"/>
+        </svg>
+        <div class="dest-img-label">Port Klang Seafront</div>
+      </div>
+      <div class="dest-img-card">
+        <!-- Bak Kut Teh / Food SVG -->
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="tableBG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2c1a00"/>
+              <stop offset="100%" stop-color="#1a0d00"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="url(#tableBG)"/>
+          <!-- Table surface -->
+          <ellipse cx="200" cy="230" rx="180" ry="55" fill="#3d2200"/>
+          <ellipse cx="200" cy="225" rx="175" ry="50" fill="#4a2800"/>
+          <!-- Main claypot / bowl -->
+          <ellipse cx="200" cy="185" rx="80" ry="25" fill="#8b4513"/>
+          <rect x="122" y="160" width="156" height="30" fill="#6b3410" rx="2"/>
+          <ellipse cx="200" cy="160" rx="78" ry="22" fill="#7a3c14"/>
+          <!-- Soup surface -->
+          <ellipse cx="200" cy="160" rx="70" ry="18" fill="#8b0000"/>
+          <!-- Soup with herbs -->
+          <ellipse cx="200" cy="160" rx="65" ry="16" fill="#a00000" opacity="0.8"/>
+          <circle cx="185" cy="158" r="5" fill="#228b22" opacity="0.9"/>
+          <circle cx="210" cy="155" r="4" fill="#228b22" opacity="0.9"/>
+          <circle cx="220" cy="162" r="5" fill="#228b22" opacity="0.9"/>
+          <circle cx="175" cy="163" r="4" fill="#228b22" opacity="0.8"/>
+          <!-- Rib bones in soup -->
+          <ellipse cx="195" cy="157" rx="18" ry="5" fill="#f5deb3" opacity="0.9"/>
+          <ellipse cx="218" cy="161" rx="15" ry="4" fill="#f5deb3" opacity="0.8"/>
+          <!-- Steam wisps -->
+          <path d="M 170 145 Q 165 130 170 115 Q 175 100 170 88" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
+          <path d="M 200 140 Q 195 125 200 110 Q 205 95 200 82" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
+          <path d="M 230 145 Q 235 130 230 115 Q 225 100 230 88" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
+          <!-- Side dish - rice bowl -->
+          <ellipse cx="320" cy="200" rx="40" ry="12" fill="#c8a870"/>
+          <rect x="282" y="188" width="76" height="16" fill="#b09060" rx="2"/>
+          <ellipse cx="320" cy="188" rx="38" ry="10" fill="#d4b480"/>
+          <ellipse cx="320" cy="188" rx="32" ry="8" fill="#f5f0e0"/>
+          <!-- Chopsticks -->
+          <line x1="100" y1="155" x2="140" y2="210" stroke="#8b6914" stroke-width="4" stroke-linecap="round"/>
+          <line x1="108" y1="152" x2="148" y2="207" stroke="#a07820" stroke-width="4" stroke-linecap="round"/>
+          <!-- Tea cup -->
+          <ellipse cx="90" cy="215" rx="22" ry="8" fill="#8b4513"/>
+          <rect x="70" y="207" width="42" height="12" fill="#6b3010" rx="2"/>
+          <ellipse cx="90" cy="207" rx="20" ry="7" fill="#a05020"/>
+          <ellipse cx="90" cy="207" rx="16" ry="5" fill="#4a1a00"/>
+          <!-- Soy sauce bottle -->
+          <rect x="340" y="165" width="18" height="40" fill="#2a1500" rx="4"/>
+          <rect x="344" y="160" width="10" height="10" fill="#1a0d00" rx="2"/>
+          <text x="349" y="195" font-size="8" fill="#cc4400" text-anchor="middle" transform="rotate(-90,349,195)">SOY</text>
+        </svg>
+        <div class="dest-img-label">Bak Kut Teh · Klang's Famous Dish</div>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="transit">
+      <div class="day-num">
+        <div class="num">03</div>
+        <div class="date-label">May 1<br>Fri</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-explore">Travel Day</span>
+        <div class="day-title">Move to Klang — Pre-Competition 🧘</div>
+        <ul class="day-activities">
+          <li>30–40 min drive from KL to Klang, check into hotel near venue</li>
+          <li>Competitor: Rest, prep, light training</li>
+          <li>Family: Explore Port Klang seafront or Klang's Little India</li>
+          <li>KSL City Mall (attached to venue) for shopping & food</li>
+        </ul>
+        <div class="day-hotel">Hotel Prescott Klang / Hotel Granada (~₹4,000–6,000/night)</div>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="comp1">
+      <div class="day-num">
+        <div class="num">04</div>
+        <div class="date-label">May 2<br>Sat</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-competition">🥋 Competition Day 1</span>
+        <div class="day-title">Championship — Day 1 @ KSL Esplanade Mall</div>
+        <ul class="day-activities">
+          <li>Full competition day — Kyorugi & Speed events</li>
+          <li>Family: Cheer from the stands + KSL Mall entertainment</li>
+          <li>Evening: Team celebration dinner — Klang is famous for Bak Kut Teh!</li>
+        </ul>
+        <div class="day-hotel">Klang hotel</div>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="comp2">
+      <div class="day-num">
+        <div class="num">05</div>
+        <div class="date-label">May 3<br>Sun</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-competition">🥋 Competition Day 2</span>
+        <div class="day-title">Championship — Day 2 · Finals & Poomsae</div>
+        <ul class="day-activities">
+          <li>Poomsae & remaining events — give it everything!</li>
+          <li>Medal ceremony & team photos</li>
+          <li>Victory dinner — celebrate with the India team</li>
+          <li>Pack up & prep for the chill leg of the trip</li>
+        </ul>
+        <div class="day-hotel">Klang hotel (last night)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPART DAYS -->
+  <div class="iti-group-depart" data-theme="options">
+    <div class="iti-group-label">🌅 Adventure Leg & Homeward Bound</div>
+
+    <div class="day-row" data-day="adv">
+      <div class="day-num">
+        <div class="num">06</div>
+        <div class="date-label">May 4<br>Mon</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-adventure">Adventure</span>
+        <div class="day-title">Choose Your Adventure — See Options Below ↓</div>
+        <ul class="day-activities">
+          <li>Option A: Head to Singapore — Universal Studios & Sentosa</li>
+          <li>Option B: Fly to Langkawi — beaches, cable car, island hopping</li>
+          <li>Both options are 2 nights / 1.5 days of pure family fun</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-row" data-day="depart">
+      <div class="day-num">
+        <div class="num">07</div>
+        <div class="date-label">May 5<br>Tue</div>
+      </div>
+      <div class="day-content">
+        <span class="day-tag tag-depart">Depart</span>
+        <div class="day-title">Fly Home to Mumbai 🛫</div>
+        <ul class="day-activities">
+          <li>Last morning: Quick souvenir run, local breakfast</li>
+          <li>Head to KL/Singapore/Langkawi airport</li>
+          <li>Fly back to Mumbai CSMIA with memories (and medals) 🥇</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- KIDS CORNER -->
+<section class="kids-section" id="kids">
+  <div class="kids-inner">
+    <div class="kids-title">🎉 KIDS CORNER</div>
+    <div class="kids-sub">Because this trip is for them too · Aadit & Aadya</div>
+
+    <div class="kids-grid">
+      <!-- Boy -->
+      <div class="kid-card kid-card-boy">
+        <div class="kid-avatar">👦</div>
+        <div class="kid-name">AADIT</div>
+        <div class="kid-age">Little Champion · Future Black Belt?</div>
+        <ul class="kid-list">
+          <li><strong>Day 1:</strong> Spot planes at CSMIA — gate-spotting game! ✈️</li>
+          <li><strong>Batu Caves:</strong> Count every one of the 272 steps — race to the top!</li>
+          <li><strong>Aquaria KLCC:</strong> Sharks, rays & the underwater tunnel 🦈</li>
+          <li><strong>Champ Days:</strong> Cheer from the stands — make a sign for the team!</li>
+          <li><strong>Singapore:</strong> Transformers, Jurassic World & Minion Park at USS 🎢</li>
+          <li><strong>Langkawi:</strong> Speed boat island hopping + Eagle Square 🦅</li>
+          <li><strong>Everywhere:</strong> Street food challenge — try 5 new foods & rank them</li>
+        </ul>
+      </div>
+      <!-- Girl -->
+      <div class="kid-card kid-card-girl">
+        <div class="kid-avatar">👧</div>
+        <div class="kid-name">AADYA</div>
+        <div class="kid-age">Adventurous Explorer · Star of the Show</div>
+        <ul class="kid-list">
+          <li><strong>Day 1:</strong> Collect airport stickers from every country's gate 🌏</li>
+          <li><strong>Batu Caves:</strong> Spot the rainbow-painted stairs & the monkeys 🐒</li>
+          <li><strong>KL Bird Park:</strong> Hand-feed parrots — best photo spot of the trip 🦜</li>
+          <li><strong>Champ Days:</strong> Learn 3 Taekwondo moves from the sidelines 🥋</li>
+          <li><strong>Singapore:</strong> S.E.A. Aquarium, Mermaid Lagoon & ice cream at Sentosa 🧜</li>
+          <li><strong>Langkawi:</strong> Cable car ride above the jungle + duty-free chocolate haul 🍫</li>
+          <li><strong>Everywhere:</strong> Holiday journal — draw one thing from each day 🎨</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kids-shared">
+      <h4>🎮 Together — Best Moments For Both</h4>
+      <ul>
+        <li>🎢 Universal Studios Singapore</li>
+        <li>🐠 Aquaria KLCC</li>
+        <li>🛶 Island Hopping, Langkawi</li>
+        <li>🌃 Petronas Towers Night Glow</li>
+        <li>🍜 Hawker Centre Food Hunt</li>
+        <li>🥊 Cheering at the Championship</li>
+        <li>🌅 Langkawi Cable Car</li>
+        <li>🛍️ Duty-Free Candy Shop, Langkawi</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OPTIONS -->
+<section class="options-section" id="options" data-theme="options">
+  <div class="section-header" style="max-width:900px; margin:0 auto 40px;">
+    <div class="section-label" style="opacity:0.45; letter-spacing:6px; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; text-transform:uppercase; margin-bottom:8px; color:#f5f0e8;">Post-Championship</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,8vw,6rem); line-height:1; color:#f5f0e8;">PICK YOUR <span style="color:#F5A623;">VIBE</span></h2>
+  </div>
+
+  <!-- Option Images -->
+  <div style="max-width:900px;margin:0 auto 28px;display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+    <div class="dest-img-card" style="aspect-ratio:16/7;">
+      <!-- Singapore Skyline SVG -->
+      <svg viewBox="0 0 600 265" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+        <defs>
+          <linearGradient id="sgSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d1b3e"/>
+            <stop offset="60%" stop-color="#1a3060"/>
+            <stop offset="100%" stop-color="#0a4080"/>
+          </linearGradient>
+          <linearGradient id="sgWater" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a3060"/>
+            <stop offset="100%" stop-color="#051830"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="265" fill="url(#sgSky)"/>
+        <rect x="0" y="180" width="600" height="85" fill="url(#sgWater)"/>
+        <!-- Stars -->
+        <circle cx="40" cy="20" r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="100" cy="35" r="1" fill="white" opacity="0.5"/>
+        <circle cx="500" cy="15" r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="560" cy="30" r="1" fill="white" opacity="0.6"/>
+        <circle cx="300" cy="10" r="1" fill="white" opacity="0.5"/>
+        <!-- Marina Bay Sands -->
+        <!-- 3 towers -->
+        <rect x="230" y="80" width="22" height="105" fill="#8ab0d0"/>
+        <rect x="260" y="85" width="22" height="100" fill="#8ab0d0"/>
+        <rect x="290" y="82" width="22" height="103" fill="#8ab0d0"/>
+        <!-- Sky park / boat top -->
+        <rect x="218" y="72" width="106" height="14" fill="#a0c0e0" rx="3"/>
+        <ellipse cx="271" cy="72" rx="55" ry="8" fill="#b0d0f0"/>
+        <!-- Helix Bridge -->
+        <path d="M 160 182 Q 210 160 260 182" fill="none" stroke="#60a0c0" stroke-width="3" opacity="0.8"/>
+        <path d="M 160 182 Q 210 170 260 182" fill="none" stroke="#80b0d0" stroke-width="2" opacity="0.5"/>
+        <!-- Gardens by the Bay supertrees -->
+        <line x1="80" y1="182" x2="80" y2="120" stroke="#2a8050" stroke-width="6"/>
+        <ellipse cx="80" cy="112" rx="28" ry="14" fill="#3a9060"/>
+        <ellipse cx="80" cy="112" rx="22" ry="10" fill="#2d7a50"/>
+        <line x1="120" y1="182" x2="120" y2="130" stroke="#2a8050" stroke-width="5"/>
+        <ellipse cx="120" cy="123" rx="22" ry="11" fill="#3a9060"/>
+        <line x1="55" y1="182" x2="55" y2="135" stroke="#258048" stroke-width="4"/>
+        <ellipse cx="55" cy="128" rx="18" ry="9" fill="#338858"/>
+        <!-- Other buildings -->
+        <rect x="380" y="100" width="28" height="85" fill="#6080a0"/>
+        <rect x="415" y="115" width="22" height="70" fill="#708aaa"/>
+        <rect x="443" y="90" width="20" height="95" fill="#5878a0"/>
+        <rect x="470" y="108" width="24" height="77" fill="#6888b0"/>
+        <rect x="500" y="95" width="30" height="90" fill="#507090"/>
+        <rect x="540" y="120" width="25" height="65" fill="#6080a0"/>
+        <rect x="340" y="130" width="18" height="55" fill="#7090a8"/>
+        <!-- Window lights -->
+        <rect x="383" y="110" width="4" height="3" fill="#ffe066" opacity="0.8"/>
+        <rect x="390" y="120" width="4" height="3" fill="#ffe066" opacity="0.6"/>
+        <rect x="446" y="100" width="4" height="3" fill="#ffe066" opacity="0.8"/>
+        <rect x="504" y="105" width="4" height="3" fill="#ffe066" opacity="0.7"/>
+        <rect x="240" y="92" width="4" height="3" fill="#ffe066" opacity="0.7"/>
+        <rect x="265" y="96" width="4" height="3" fill="#ffe066" opacity="0.7"/>
+        <rect x="293" y="92" width="4" height="3" fill="#ffe066" opacity="0.8"/>
+        <!-- Water reflections -->
+        <line x1="271" y1="185" x2="265" y2="230" stroke="#8ab0d0" stroke-width="2" opacity="0.2"/>
+        <line x1="390" y1="187" x2="386" y2="220" stroke="#7090b0" stroke-width="1.5" opacity="0.2"/>
+      </svg>
+      <div class="dest-img-label">Option A · Singapore Skyline</div>
+    </div>
+    <div class="dest-img-card" style="aspect-ratio:16/7;">
+      <!-- Langkawi Beach SVG -->
+      <svg viewBox="0 0 600 265" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+        <defs>
+          <linearGradient id="beachSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e90ff"/>
+            <stop offset="50%" stop-color="#87ceeb"/>
+            <stop offset="100%" stop-color="#b0e2ff"/>
+          </linearGradient>
+          <linearGradient id="seaLK" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00b4d8"/>
+            <stop offset="100%" stop-color="#0077b6"/>
+          </linearGradient>
+          <linearGradient id="sandG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f5deb3"/>
+            <stop offset="100%" stop-color="#e8c870"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="265" fill="url(#beachSky)"/>
+        <!-- Sun -->
+        <circle cx="480" cy="55" r="38" fill="#ffd700" opacity="0.95"/>
+        <circle cx="480" cy="55" r="30" fill="#ffec60"/>
+        <!-- Puffy clouds -->
+        <ellipse cx="100" cy="50" rx="55" ry="22" fill="white" opacity="0.9"/>
+        <ellipse cx="135" cy="42" rx="40" ry="18" fill="white" opacity="0.9"/>
+        <ellipse cx="300" cy="40" rx="45" ry="18" fill="white" opacity="0.8"/>
+        <!-- Sea -->
+        <rect x="0" y="155" width="600" height="65" fill="url(#seaLK)"/>
+        <!-- Waves -->
+        <path d="M 0 160 Q 50 150 100 160 Q 150 170 200 160 Q 250 150 300 160 Q 350 170 400 160 Q 450 150 500 160 Q 550 170 600 160" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+        <path d="M 0 172 Q 60 162 120 172 Q 180 182 240 172 Q 300 162 360 172 Q 420 182 480 172 Q 540 162 600 172" fill="none" stroke="white" stroke-width="1.5" opacity="0.35"/>
+        <!-- Sand -->
+        <ellipse cx="300" cy="230" rx="320" ry="45" fill="url(#sandG)"/>
+        <rect x="0" y="215" width="600" height="50" fill="#f0d090"/>
+        <!-- Palm trees -->
+        <line x1="80" y1="220" x2="95" y2="110" stroke="#5a3a10" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 95 110 Q 60 80 30 95" fill="none" stroke="#2d7a30" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 95 110 Q 130 75 155 88" fill="none" stroke="#2d7a30" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 95 110 Q 95 70 85 50" fill="none" stroke="#2d7a30" stroke-width="7" stroke-linecap="round"/>
+        <path d="M 95 110 Q 65 95 45 110" fill="none" stroke="#3a8a38" stroke-width="6" stroke-linecap="round"/>
+        <path d="M 95 110 Q 125 95 140 108" fill="none" stroke="#3a8a38" stroke-width="6" stroke-linecap="round"/>
+        <!-- Coconuts -->
+        <circle cx="88" cy="118" r="6" fill="#4a8820"/>
+        <circle cx="100" cy="115" r="6" fill="#4a8820"/>
+        <!-- Second palm tree -->
+        <line x1="490" y1="218" x2="510" y2="105" stroke="#5a3a10" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 510 105 Q 475 75 445 90" fill="none" stroke="#2d7a30" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 510 105 Q 545 72 570 85" fill="none" stroke="#2d7a30" stroke-width="8" stroke-linecap="round"/>
+        <path d="M 510 105 Q 510 65 500 45" fill="none" stroke="#2d7a30" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="503" cy="113" r="6" fill="#4a8820"/>
+        <circle cx="516" cy="110" r="6" fill="#4a8820"/>
+        <!-- Beach umbrella -->
+        <line x1="280" y1="225" x2="290" y2="168" stroke="#8b4513" stroke-width="3"/>
+        <ellipse cx="285" cy="165" rx="38" ry="12" fill="#e63946" opacity="0.9"/>
+        <ellipse cx="285" cy="163" rx="36" ry="10" fill="#ff6b6b"/>
+        <!-- Boat on horizon -->
+        <polygon points="330,152 380,152 375,158 335,158" fill="white" opacity="0.8"/>
+        <line x1="355" y1="142" x2="355" y2="152" stroke="#888" stroke-width="1.5"/>
+        <polygon points="355,140 370,152 355,152" fill="white" opacity="0.7"/>
+      </svg>
+      <div class="dest-img-label">Option B · Langkawi Beach</div>
+    </div>
+  </div>
+
+  <div class="options-grid">
+    <div class="option-card option-a">
+      <span class="option-emoji">🎢</span>
+      <h3>SINGAPORE</h3>
+      <div class="tagline">Thrills · Theme Parks · City Buzz</div>
+      <ul>
+        <li>Universal Studios Singapore — the big one for kids</li>
+        <li>S.E.A. Aquarium at Sentosa Island</li>
+        <li>Marina Bay Sands light show & waterfront</li>
+        <li>Clarke Quay for dinner & nightlife</li>
+        <li>Gardens by the Bay (Supertrees!)</li>
+        <li>3.5 hr by bus or 1 hr by flight from KL</li>
+      </ul>
+      <div class="visa-note visa-required">🛂 Visa Required for Indians · Apply in advance through Singapore Embassy or VFS · e-Visa available online · Processing: 3–5 working days</div>
+    </div>
+
+    <div class="option-card option-b">
+      <span class="option-emoji">🏖️</span>
+      <h3>LANGKAWI</h3>
+      <div class="tagline">Beach · Relaxation · Island Life</div>
+      <ul>
+        <li>Pristine beaches — Pantai Cenang is perfect for kids</li>
+        <li>Langkawi Cable Car — stunning jungle & sea views</li>
+        <li>Island hopping boat tours</li>
+        <li>Duty-free shopping (chocolate, electronics, spirits)</li>
+        <li>Eagle Square & Mangrove night tour</li>
+        <li>1 hr flight from KL (AirAsia, ~₹3,000–5,000/person)</li>
+      </ul>
+      <div class="visa-note visa-free">✅ No Separate Visa Needed · Langkawi is in Malaysia · Visa on Arrival covers your entire Malaysia trip including Langkawi</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="budget-section" id="budget" data-theme="budget">
+  <div class="section-header" style="max-width:900px;margin:0 auto 48px;">
+    <div class="section-label" style="opacity:0.45; letter-spacing:6px; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; text-transform:uppercase; margin-bottom:8px; color:#333;">What It'll Cost</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,8vw,5.5rem); line-height:1; color:#1a1a1a;">THE <span style="color:#7c3aed;">BUDGET</span></h2>
+    <p style="opacity:0.55; margin-top:8px; font-size:0.88rem; color:#333;">Family of 4 · 3–4 Star · Moderate spending · 7 days · Flying from Mumbai</p>
+  </div>
+
+  <div class="mumbai-flight-note">
+    <strong>✈️ Mumbai Note:</strong> Flights from BOM (Mumbai) to KUL (Kuala Lumpur) run on AirAsia, IndiGo, Air India Express & Malaysia Airlines. Look out for AirAsia or IndiGo codeshare deals. Book early for best fares!
+  </div>
+
+  <table class="budget-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Notes</th>
+        <th>Estimate (INR)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>✈️ Flights (4 pax, return BOM → KUL)</td>
+        <td>Mumbai → KUL, book early on AirAsia or IndiGo codeshare</td>
+        <td>₹1,20,000 – ₹1,60,000</td>
+      </tr>
+      <tr>
+        <td>🏨 Hotels (6 nights, 3–4 star)</td>
+        <td>2 nights KL + 1 night Klang + 2 nights Singapore/Langkawi</td>
+        <td>₹80,000 – ₹1,10,000</td>
+      </tr>
+      <tr>
+        <td>🍜 Food (all meals, 7 days)</td>
+        <td>Mix of hawker centres, malls, one nice dinner</td>
+        <td>₹30,000 – ₹40,000</td>
+      </tr>
+      <tr>
+        <td>🎢 Universal Studios (4 pax)</td>
+        <td>Only if Singapore — adult ~SGD 85, child ~SGD 68</td>
+        <td>₹25,000 – ₹32,000</td>
+      </tr>
+      <tr>
+        <td>🚗 Local Transport</td>
+        <td>Grab, buses, airport transfers, Klang day trip</td>
+        <td>₹15,000 – ₹22,000</td>
+      </tr>
+      <tr>
+        <td>🏖️ Activities & Attractions</td>
+        <td>Batu Caves, Aquaria, cable car, island hopping etc.</td>
+        <td>₹15,000 – ₹22,000</td>
+      </tr>
+      <tr>
+        <td>✈️ Internal flight (if Langkawi)</td>
+        <td>KL → Langkawi → KL, 4 pax, AirAsia</td>
+        <td>₹12,000 – ₹20,000</td>
+      </tr>
+      <tr>
+        <td>🛂 Singapore Visa (if applicable)</td>
+        <td>4 pax, e-Visa or VFS processing</td>
+        <td>₹8,000 – ₹12,000</td>
+      </tr>
+      <tr>
+        <td>🛍️ Shopping & Miscellaneous</td>
+        <td>Souvenirs, snacks, tips, buffer</td>
+        <td>₹10,000 – ₹20,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="budget-total">
+    <div class="total-box">
+      <div class="total-label">Total Estimate (Family of 4)</div>
+      <div class="total-amount">₹3.15L – ₹4.38L</div>
+      <div class="total-note">Taekwondo package (₹1,15,000 for student + 1 parent) is separate</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISA INFO -->
+<section class="visa-section" id="visa" data-theme="visa">
+  <div class="section-header" style="max-width:900px; margin:0 auto 40px;">
+    <div class="section-label" style="opacity:0.45; letter-spacing:6px; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; text-transform:uppercase; margin-bottom:8px; color:#333;">Don't Forget</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(2.5rem,7vw,5rem); line-height:1; color:#1a1a1a;">VISA <span style="color:#0284c7;">INFO</span></h2>
+  </div>
+
+  <div class="visa-cards">
+    <div class="visa-card visa-card-my">
+      <h3>🇲🇾 Malaysia</h3>
+      <span class="status-badge badge-free">✅ Visa on Arrival</span>
+      <ul>
+        <li>Indians get Visa on Arrival — no advance application needed</li>
+        <li>Valid for 30 days</li>
+        <li>Available at KLIA on arrival</li>
+        <li>Fee: Approx RM 200–300 (₹3,500–5,000)</li>
+        <li>Keep passport valid for 6+ months</li>
+        <li>Covers KL, Klang, AND Langkawi</li>
+      </ul>
+    </div>
+
+    <div class="visa-card visa-card-sg">
+      <h3>🇸🇬 Singapore</h3>
+      <span class="status-badge badge-required">⚠️ Visa Required</span>
+      <ul>
+        <li>Indians need a visa — apply before travel</li>
+        <li>e-Visa available via ICA website or VFS Singapore</li>
+        <li>Apply at least 2–3 weeks before travel</li>
+        <li>Documents: passport, photos, bank statement, itinerary</li>
+        <li>Fee: ~SGD 30 per person (~₹1,800)</li>
+        <li>Processing: 3–5 working days typically</li>
+        <li>VFS Singapore office: Mumbai & Delhi available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">🌴 FIGHT. EXPLORE. CELEBRATE. TOGETHER.</div>
+  <p>Malaysia International Taekwondo Championship · May 2–3, 2026 · Klang, Malaysia</p>
+  <p style="margin-top:4px;">Built with ❤️ for the Maskara Family — Summer 2026</p>
+</footer>
+
+<script>
+  // Scroll animation for day rows
+  const rows = document.querySelectorAll('.day-row, .dest-image-row');
+  const rowObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+  rows.forEach(row => rowObserver.observe(row));
+
+  // SCROLL-BASED BACKGROUND THEMING
+  const themeMap = {
+    hero: { bg: '#fff8ee', navBorder: 'rgba(255,126,59,0.3)' },
+    championship: { bg: '#1a0002', navBorder: 'rgba(204,0,1,0.4)' },
+    itinerary: { bg: '#edfff8', navBorder: 'rgba(0,184,122,0.3)' },
+    kids: { bg: '#f0fdf4', navBorder: 'rgba(5,150,105,0.25)' },
+    options: { bg: '#fffbea', navBorder: 'rgba(230,150,10,0.3)' },
+    budget: { bg: '#f5f0ff', navBorder: 'rgba(124,58,237,0.25)' },
+    visa: { bg: '#eef8ff', navBorder: 'rgba(2,132,199,0.25)' }
+  };
+
+  const sections = document.querySelectorAll('section[id], .info-strip');
+  const nav = document.querySelector('nav');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id || 'hero';
+        const theme = themeMap[id] || themeMap.hero;
+        document.body.style.background = theme.bg;
+        const isDark = id === 'championship';
+        nav.style.background = isDark ? 'rgba(20,0,0,0.95)' : 'rgba(255,255,255,0.93)';
+        if (nav) nav.style.borderBottomColor = theme.navBorder;
+      }
+    });
+  }, { threshold: 0.25 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // Also observe itinerary sub-groups for colour transitions
+  const itiGroups = document.querySelectorAll('.iti-group-kl, .iti-group-klang, .iti-group-depart');
+  const groupObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        if (el.classList.contains('iti-group-kl')) {
+          document.body.style.background = '#edfff8';
+          nav.style.background = 'rgba(255,255,255,0.93)';
+          nav.style.borderBottomColor = 'rgba(0,184,122,0.3)';
+        } else if (el.classList.contains('iti-group-klang')) {
+          document.body.style.background = '#1a0002';
+          nav.style.background = 'rgba(20,0,0,0.95)';
+          nav.style.borderBottomColor = 'rgba(204,0,1,0.4)';
+        } else if (el.classList.contains('iti-group-depart')) {
+          document.body.style.background = '#fffbea';
+          nav.style.background = 'rgba(255,255,255,0.93)';
+          nav.style.borderBottomColor = 'rgba(230,150,10,0.3)';
+        }
+      }
+    });
+  }, { threshold: 0.2 });
+  itiGroups.forEach(g => groupObserver.observe(g));
+</script>
+
+</body>
+</html>
